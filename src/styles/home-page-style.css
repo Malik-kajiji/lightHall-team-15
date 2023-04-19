@@ -1,0 +1,244 @@
+.header {
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.new-task {
+  box-sizing: border-box;
+  display: flex;
+  position: absolute;
+  left: 25px;
+  top: 18px;
+  width: 176px;
+  height: 50px;
+  background: #215ABD;
+  border: 2px solid #215ABD;
+  border-radius: 25px;
+  transition: width 0.5s;
+}
+
+.new-task-image {
+  scale: 0.85;
+  margin-left: 1.5px;
+  margin-top: 1.5px;
+}
+
+.new-task-text {
+  margin-top: 12px;
+  margin-left: 5px;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+  transition: 0.5s;
+}
+
+.new-task:hover .new-task-text {
+  transform: translateX(20px);
+} 
+
+.user-tasks {
+  position: absolute;
+  top: 18px;
+  width: 200px;
+  left: 700px;
+}
+
+.user-tasks-text {
+  margin-top: 12px;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: black;
+}
+
+.sort-dropdown {
+  position: relative;
+}
+
+.sort {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  left: 1350px;
+  width: 109px;
+  height: 30px;
+  background: #FFFFFF;
+  border: 1px solid #D0D5DD;
+  border-radius: 8px 8px 8px 8px;
+  transition: scale 0s, opacity 0.1s;
+}
+
+.sort-text {
+  text-align: center;
+  margin-left: 25px;
+  margin-top: 3px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #344054;
+}
+
+.sort-image {
+  scale: 0.45;
+}
+
+.sort-by-name {
+  box-sizing: border-box;
+  position: absolute;
+  left: 1350px;
+  top: 30px;
+  opacity: 0;
+  scale: 0;
+  width: 109px;
+  height: 30px;
+  background: #FFFFFF;
+  border-width: 0px 1px 1px 1px;
+  border-style: solid;
+  border-color: #D0D5DD;
+  transition: scale 0s, opacity 0.1s;
+}
+
+.sort-by-name-text {
+  text-align: center;
+  margin-top: 3px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #344054;
+}
+
+.sort-by-date {
+  box-sizing: border-box;
+  position: absolute;
+  left: 1350px;
+  top: 60px;
+  opacity: 0;
+  scale: 0;
+  width: 109px;
+  height: 30px;
+  background: #FFFFFF;
+  border-width: 0px 1px 1px 1px;
+  border-style: solid;
+  border-color: #D0D5DD;
+  border-radius: 0px 0px 8px 8px;
+  transition: scale 0s, opacity 0.1s;
+}
+
+.sort-by-date-text {
+  text-align: center;
+  margin-top: 3px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #344054;
+}
+
+.sort-dropdown:hover .sort{
+  cursor: pointer;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.sort-dropdown:hover .sort-by-name {
+  opacity: 1;
+  scale: 1;
+}
+
+.sort-dropdown:hover .sort-by-date {
+  opacity: 1;
+  scale: 1;
+}
+
+.sort-by-name:hover {
+  cursor: pointer;
+  background-color: rgba(234, 234, 234, 0.58);
+}
+
+.sort-by-date:hover {
+  cursor: pointer;
+  background-color: rgba(234, 234, 234, 0.58);
+}
+
+.wait-list {
+  box-sizing: border-box;
+  position: absolute;
+  width: 176px;
+  height: 50px;
+  left: 27px;
+  top: 150px;
+  background: #344054;
+  border: 2px solid #344054;
+  border-radius: 25px;
+  transition: width 0.5s;
+}
+
+.in-progress {
+  box-sizing: border-box;
+  position: absolute;
+  width: 176px;
+  height: 50px;
+  left: 27px;
+  top: 215px;
+  background: #F1C40F;
+  border: 2px solid #F1C40F;
+  border-radius: 25px;
+  transition: width 0.5s;
+}
+
+.completed {
+  box-sizing: border-box;
+  position: absolute;
+  width: 176px;
+  height: 50px;
+  left: 27px;
+  top: 279px;
+  background: #2ECC71;
+  border: 2px solid #2ECC71;
+  border-radius: 25px;
+  transition: width 0.5s;
+}
+
+.expired {
+  box-sizing: border-box;
+  position: absolute;
+  width: 176px;
+  height: 50px;
+  left: 25px;
+  top: 343px;
+  background: #E74C3C;
+  border: 2px solid #E74C3C;
+  border-radius: 25px;
+  transition: width 0.5s;
+}
+
+.new-task:hover, .wait-list:hover, 
+.in-progress:hover, .completed:hover, 
+.expired:hover {
+  width: 213px;
+  cursor: pointer; 
+}
+
+.button-text {
+  margin-top: 12px;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+}
