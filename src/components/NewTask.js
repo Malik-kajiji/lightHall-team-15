@@ -18,7 +18,14 @@ const NewTask = ({alltasks,isShowen,setIsShowen}) => {
         if(name === 'desc' && value.length <= 450){
             setLeftLetters(450 - value.length);
             setFormData(prev => ({...prev,[name]:value}));
-        }else if(name !== 'desc') {
+        } else if(name === 'date'){
+            const dateNow = new Date().getTime()
+            const taskDate = new Date(value).getTime()
+            if(dateNow >= taskDate){
+                setAlertData({type:'warrning',msg:'tasks with a past date would go directly in the expired tasks',showen:true})
+            }
+            setFormData(prev => ({...prev,[name]:value}));
+        } else if(name !== 'desc') {
             setFormData(prev => ({...prev,[name]:value}));
         }
     }

@@ -59,10 +59,11 @@ const HomePage = () => {
     })
   },[])
   useEffect(()=>{
-    const dateNow = new Date().toDateString()
+    const dateNow = new Date().getTime()
     const ref = doc(db,'tasks',auth.currentUser.uid)
     for(let i =0; i < alltasks.waitList.length ; i++){
-      if(alltasks.waitList[i].date >= dateNow){
+      const taskDate = new Date(alltasks.waitList[i].date).getTime()
+      if(taskDate <= dateNow){
         const newData = alltasks.waitList.filter((e)=> e.title !== alltasks.waitList[i].title);
         updateDoc(ref,{
           waitList:newData,
@@ -70,7 +71,8 @@ const HomePage = () => {
       };
     }
     for(let i =0; i < alltasks.inProgress.length  ; i++){
-      if(alltasks.inProgress[i].date >= dateNow) {
+      const taskDate = new Date(alltasks.inProgress[i].date).getTime()
+      if(taskDate >= dateNow) {
         const newData = alltasks.inProgress.filter((e)=> e.title !== alltasks.inProgress[i].title);
         updateDoc(ref,{
           inProgress:newData,
@@ -78,7 +80,8 @@ const HomePage = () => {
       };
     }
     for(let i =0; i < alltasks.completed.length; i++){
-      if(alltasks.completed[i].date >= dateNow) {
+      const taskDate = new Date(alltasks.completed[i].date).getTime()
+      if(taskDate >= dateNow) {
         const newData = alltasks.completed.filter((e)=> e.title !== alltasks.completed[i].title);
         updateDoc(ref,{
           completed:newData,
