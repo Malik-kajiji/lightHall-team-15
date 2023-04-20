@@ -5,28 +5,36 @@ import Alert from './components/Alert';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './config/firebaseConfig';
 import { TasksData } from './context/TasksContext';
+import HomePage from './components/homePage';
 
 function App() {
-  const {allData} = TasksData()
   const [isLoggedIn,setIsLoggedIn] = useState(false);
+  const [loading,setLoading] = useState(true);
   useEffect(()=>{
     onAuthStateChanged(auth,(res)=>{
       if(res){
         setIsLoggedIn(true)
+      }else {
+        setIsLoggedIn(false)
       }
+      setLoading(false);
     })
   },[])
   return (
     <main className="App">
       <Alert />
-      {/* to check if the user is logged in */}
-      {!isLoggedIn ?
-        <Account />
+      {loading?
+        <div className='loading'><span></span></div>
       :
-      // main app
-        <section>
-          
-        </section>
+      <>
+      {/* to check if the user is logged in */}
+        {!isLoggedIn ?
+          <Account />
+        :
+        // main app
+          <HomePage />
+        }
+      </>
       }
     </main>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
-    Link
+    Link,
+    useNavigate
 } from "react-router-dom";
 import { AlertData } from '../context/AlertContext';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -9,6 +10,7 @@ import { auth } from '../config/firebaseConfig';
 
 
 const Login = (props) => {
+    const navigate = useNavigate()
     const { setAlertData } = AlertData()
     const [formData, setFormData] = useState({
         email: '',
@@ -21,7 +23,10 @@ const Login = (props) => {
             setAlertData({type:'warrning',showen:true,msg:'make sure to fill all the inputs'})
         }else {
             signInWithEmailAndPassword(auth,formData.email,formData.password)
-            .then((res)=>setAlertData({type:'success',showen:true,msg:'logged in successfully'}))
+            .then((res)=>{
+                setAlertData({type:'success',showen:true,msg:'logged in successfully'})
+                navigate('/')
+            })
             .catch((err) => setAlertData({type:'error',showen:true,msg:err.message}))
         }
     }

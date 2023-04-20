@@ -135,3 +135,28 @@ input {
     display: flex;
     font-size: 20px;
 }
+@keyframes Loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.loading {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.loading span {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: #215ABD solid 4px;
+    border-left: transparent solid 2px;
+    animation: Loading 1s linear infinite;
+}

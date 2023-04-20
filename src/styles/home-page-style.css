@@ -38,7 +38,8 @@
   transition: 0.5s;
 }
 
-.new-task:hover .new-task-text {
+.new-task:hover .new-task-text,
+.new-task.current  .new-task-text{
   transform: translateX(20px);
 } 
 
@@ -48,7 +49,40 @@
   width: 200px;
   left: 700px;
 }
+.add-plus {
+  transition: 0.5s;
+  position: relative;
+  margin: 4px;
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 
+.add-plus::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 4px;
+  width: 30px;
+  background-color: #215ABD;
+}
+.add-plus::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 30px;
+  width: 4px;
+  background-color: #215ABD;
+}
+.new-task:hover .add-plus,
+.new-task.current  .add-plus {
+  transform: rotate(-90deg);
+}
 .user-tasks-text {
   margin-top: 12px;
   text-align: center;
@@ -75,6 +109,13 @@
   border: 1px solid #D0D5DD;
   border-radius: 8px 8px 8px 8px;
   transition: scale 0s, opacity 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sort span {
+  display: flex;
 }
 
 .sort-text {
@@ -172,7 +213,9 @@
   cursor: pointer;
   background-color: rgba(234, 234, 234, 0.58);
 }
-
+.task-msg {
+  text-align: center;
+}
 .wait-list {
   box-sizing: border-box;
   position: absolute;
@@ -225,9 +268,34 @@
   transition: width 0.5s;
 }
 
+.logOut {
+  cursor: pointer;
+  box-sizing: border-box;
+  position: absolute;
+  width: 176px;
+  height: 50px;
+  left: 25px;
+  top: calc(100vh - 100px);
+  background: #7f8c8d;
+  border: 2px solid #7f8c8d;
+  border-radius: 25px;
+  transition: width 0.5s;
+}
+
+.logOut span {
+  position: absolute;
+  display: flex;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: #fff;
+}
+
 .new-task:hover, .wait-list:hover, 
 .in-progress:hover, .completed:hover, 
-.expired:hover {
+.expired:hover,
+.current {
   width: 213px;
   cursor: pointer; 
 }
@@ -241,4 +309,12 @@
   font-size: 16px;
   line-height: 24px;
   color: white;
+}
+
+.renderd-tasks {
+  width: 500px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 60px;
 }

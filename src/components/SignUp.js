@@ -9,6 +9,7 @@ import { doc,setDoc } from 'firebase/firestore';
 //use this link to go to the signUp page 'login'
 
 const SignUp = (props) => {
+    const navigate = useNavigate()
     const { setAlertData } = AlertData()
     const [ formData, setFormData] = useState({
         email: '',
@@ -24,10 +25,13 @@ const SignUp = (props) => {
         e.preventDefault()
         if(email === '' || password === '' || passwordConf === ''){
             setAlertData({type:'warrning',showen:true,msg:'make sure to fill all the inputs'})
-        }else {
+        }else if(password !== passwordConf ){
+            setAlertData({type:'warrning',showen:true,msg:'make sure to match the passwords'})
+        } else {
             createUserWithEmailAndPassword(auth,email,password)
             .then((res)=>{
                 setAlertData({type:'success',showen:true,msg:'created account successfully'})
+                navigate('/')
                 const docRef = doc(db,'tasks',res.user.uid);
                 setDoc(docRef,{waitList:[],inProgress:[],expired:[],completed:[]})
             })

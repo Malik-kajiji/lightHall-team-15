@@ -8,6 +8,7 @@
     top:0;
     transform: translateY(-100%);
     transition:background-color 0.7s, backdrop-filter 0.7s;
+    z-index: 20;
 }
 .newTask.active {
     background-color: rgba(0, 0, 0, 0.35);
@@ -80,11 +81,12 @@
     position: absolute;
     bottom: 20px;
     left: 20px;
-    width: calc((100% - 60px) / 2);
+    width: calc((100% - 100px) / 2);
     height: 40px;
     border-radius: 8px;
     border: 1px solid #D0D5DD;
     background-color: #fff;
+    color: #000;
 }
 .C-Btn:hover {
     outline: 2px solid #d0d5ddd7;
@@ -101,7 +103,7 @@
     position: absolute;
     bottom: 20px;
     right: 20px;
-    width: calc((100% - 60px) / 2);
+    width: calc((100% - 100px) / 2);
     height: 40px;
     border-radius: 8px;
     border: 1px solid #215ABD;
