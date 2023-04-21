@@ -51,7 +51,8 @@ const TaskCard = ({alltasks,taskType,taskTitle,taskDesc,TaskEndDate}) => {
         }else if(taskType === 'inProgress'){
             const newData = alltasks[taskType].filter((e)=> e.title !== taskTitle);
             const ref = doc(db,'tasks',auth.currentUser.uid)
-            updateDoc(ref,{[taskType]:newData,completed:[...alltasks.completed,{title:taskTitle,date:TaskEndDate,desc:taskDesc}]})
+            const finishedDate = new Date().toLocaleDateString()
+            updateDoc(ref,{[taskType]:newData,completed:[...alltasks.completed,{title:taskTitle,date:finishedDate,desc:taskDesc}]})
             .then(()=>{
                 setAlertData({type:'success',msg:'task completed successfully',showen:true})
             })
@@ -97,7 +98,17 @@ const TaskCard = ({alltasks,taskType,taskTitle,taskDesc,TaskEndDate}) => {
             <div className="card-section">
                 <div className="card-footer">
                     <div className="card-footer-section" style={{border:`2px solid ${color}`,backgroundColor:color}}>
-                        <p>End Date</p>
+                        {taskType === 'completed'?
+                        <p>Completed Date</p>
+                            :
+                        <>
+                            {taskType === 'expired'?
+                                <p>Expired Date</p>
+                            :   
+                            <p>End Date</p>
+                            }
+                        </>
+                        }
                     </div>
                     <div className="card-footer-section" style={{border:`2px solid ${color}`}}>
                         <p>{TaskEndDate}</p>

@@ -48,7 +48,6 @@ const HomePage = () => {
   }
   function handleLogOut(){
     signOut(auth)
-    
   }
 
   useEffect(()=>{
@@ -72,23 +71,14 @@ const HomePage = () => {
     }
     for(let i =0; i < alltasks.inProgress.length  ; i++){
       const taskDate = new Date(alltasks.inProgress[i].date).getTime()
-      if(taskDate >= dateNow) {
+      if(taskDate <= dateNow) {
         const newData = alltasks.inProgress.filter((e)=> e.title !== alltasks.inProgress[i].title);
         updateDoc(ref,{
           inProgress:newData,
           expired:[...alltasks.expired,{title:alltasks.inProgress[i].title,date:alltasks.inProgress[i].date,desc:alltasks.inProgress[i].desc}]})
       };
     }
-    for(let i =0; i < alltasks.completed.length; i++){
-      const taskDate = new Date(alltasks.completed[i].date).getTime()
-      if(taskDate >= dateNow) {
-        const newData = alltasks.completed.filter((e)=> e.title !== alltasks.completed[i].title);
-        updateDoc(ref,{
-          completed:newData,
-          expired:[...alltasks.expired,{title:alltasks.completed[i].title,date:alltasks.completed[i].date,desc:alltasks.completed[i].desc}]})
-      };
-    }
-  },[alltasks.waitList.length,alltasks.inProgress.length,alltasks.completed.length,alltasks.expired.length])
+  },[alltasks.waitList.length,alltasks.inProgress.length])
   return (
     <>
     {loading?
@@ -118,7 +108,7 @@ const HomePage = () => {
             <div className="menu">
               <Link to='/'>
                 <div className={`wait-list ${current === 'wait-list'?'current' :''}`} onClick={()=>setCurrent('wait-list')}>
-                  <p className="button-text">WAIT LIST</p>
+                  <p className="button-text">PENDING</p>
                 </div>
               </Link>
               <Link to='/inProgress'>
@@ -148,7 +138,7 @@ const HomePage = () => {
                   path='/' 
                   element={<>
                   {alltasks.waitList.length <= 0?
-                    <h2 className='task-msg'> looks like there is no tasks in the wait list </h2>
+                    <h2 className='task-msg'> looks like there is no tasks in the pending list </h2>
                   :
                     <div>
                     {alltasks.waitList.map((e,i)=><TaskCard 
@@ -160,7 +150,6 @@ const HomePage = () => {
                     taskType={'waitList'} />)
                     }
                   </div>
-
                   }
                   </>}/>
                   <Route 
